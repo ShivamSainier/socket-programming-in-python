@@ -26,6 +26,13 @@ def bind():
         print(f"socket faild {e}")
         bind()
 
+ # Establish a connection with aa client
+
+ def socket_accept():
+     con,address=s.accept()
+     print(f"conection has been establish {address[0]} and {address[1]}")
+     send_command(conn)
+     conn.close()
 
 
 
