@@ -1,11 +1,15 @@
 import socket
 
-c=socket.socket()
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect((socket.gethostname(),1234))
+full_msg=""
+while True:
+    msg=s.recv(1024)
+    if len(msg)<=0:
+        break
+    full_msg+=msg.decode("utf-8")
+print(full_msg)
 
-print("socket creted")
+    
 
-c.connect(("localhost",999))
-name=input()
-c.send(bytes(name,"utf-8"))
 
-print(c.recv(1024).decode())

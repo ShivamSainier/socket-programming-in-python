@@ -1,12 +1,11 @@
 import socket
 
-s=socket.socket()
-print("socket genrate successfully")
-s.bind(("localhost",999))
-s.listen(3)
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.bind((socket.gethostname(),1234))
+s.listen(5)
 while True:
-    c,add=s.accept()
-    name=c.recv(1024).decode()
-    print(f"connected with address {add}",name)
-    c.send(bytes("welcome to my home","utf-8"))
-    c.close()
+    conn, address=s.accept()
+    print(f"connection with {address} is establish")
+    msg="welcome to the house"
+    conn.send(bytes(msg,"utf-8"))
+    conn.close()
